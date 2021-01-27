@@ -1,0 +1,96 @@
+:root {
+  // colors
+
+  --black: rgb(22, 22, 22);
+  --white: rgb(245, 245, 245);
+
+  --main-color: rgb(128, 218, 235);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Roboto", sans-serif;
+  color: var(--black);
+}
+
+html,
+body {
+  width: 100%;
+  overflow-y: hidden;
+}
+
+body {
+  background-color: var(--white);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-size: 62.5%;
+  color: var(--black);
+}
+
+// content
+.container {
+  max-width: 1920px;
+  width: 100%;
+}
+
+nav {
+  background-color: var(--main-color);
+  width: 100%;
+
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: var(--white);
+  }
+}
+
+// weather section
+.weather {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  &__img,
+  &__info {
+    max-width: 512px;
+    min-width: 320px;
+  }
+
+  &__img {
+    position: relative;
+    background-image: url(/images/cloudy.png);
+
+    p {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+      font-size: 7rem;
+    }
+  }
+
+  &__info {
+    padding: 1.5rem;
+
+    p {
+      background-color: var(--main-color);
+      padding: 0.25em;
+      border-radius: 1em;
+
+      &:not(:last-child) {
+        margin-bottom: 0.25em;
+      }
+
+      font-size: 2rem;
+      color: var(--white);
+      font-weight: 700;
+    }
+  }
+}
