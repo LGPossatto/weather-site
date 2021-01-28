@@ -13,13 +13,27 @@
   </head>
   <body>
     <nav class="h-color-w"><h1>Receitas do Dia</h1></nav>
-    <div class="h-container">
+
+    <div class="welcome h-color-mc h-fs-med h-fs-big" id="welcome-div">
+      <h1>Bem-Vindo(a)</h1>
+      <p class="prolonged">Por favor aguarde um pouco...</p>
+    </div>
+
+    <div class="error h-color-mc h-fs-med h-fs-big" id="error">
+      <h1>Parece que algo não está certo...</h1>
+      <p>Visite o site novamente mais tarde,</p>
+      <p>espere mais um pouco,</p>
+      <p>ou veja a versão demo</p>
+      <button class="button" id="btn-see-demo"><h2>Ver Demo</h2></button>
+    </div>
+
+    <div class="h-container loading" id="main-container">
       <section class="weather">
-        <div class="weather__img h-color-mc h-fs-bigger">
+        <div class="weather__img h-color-mc h-fs-bigger" id="weather-img">
           <img src="/images/cloudy.png" alt="algumas nuvens" />
           <p>27º</p>
         </div>
-        <div class="weather__info h-color-w h-fs-med">
+        <div class="weather__info h-color-w h-fs-med" id="weather-info">
           <p style="text-transform: capitalize">Algumas Nuvens</p>
           <p>Sensação Termica: 29ºC</p>
           <p>Máxima: 31º</p>

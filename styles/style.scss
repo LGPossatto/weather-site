@@ -35,6 +35,10 @@ body {
 }
 
 // helper
+.loading {
+  display: none;
+}
+
 .h-container {
   max-width: 1920px;
   width: 100%;
@@ -60,6 +64,7 @@ body {
 
 .h-fs {
   &-bigger {
+    h1,
     h2,
     p {
       font-size: 7rem;
@@ -91,6 +96,40 @@ nav {
   }
 }
 
+// welcome / error
+
+// error
+.welcome,
+.error {
+  margin-top: 2rem;
+  text-align: center;
+
+  h1 {
+    color: var(--main-color);
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  button {
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+}
+
+.welcome {
+  p {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+  }
+}
+
+.error {
+  display: none;
+}
+
 // weather section
 .weather {
   background-color: var(--main-color);
@@ -105,15 +144,15 @@ nav {
   &__img,
   &__info,
   &__time {
-    max-width: 512px;
-    min-width: 320px;
+    width: 512px;
   }
 
   &__img {
     position: relative;
-    background-image: url(/images/cloudy.png);
-    background-repeat: no-repeat;
-    background-size: contain;
+
+    img {
+      width: 100%;
+    }
 
     p {
       position: absolute;
@@ -184,17 +223,141 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
 
-  button {
-    background-color: var(--black);
-    padding: 1.5rem;
-    border: none;
-    border-radius: 1rem;
+button {
+  cursor: pointer;
+  background-color: var(--black);
+  padding: 1.5rem;
+  border: none;
+  border-radius: 1rem;
 
-    transition: opacity 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
 
-    &:hover {
-      opacity: 0.85;
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .h-fs {
+    &-bigger {
+      h2,
+      p {
+        font-size: 5rem;
+      }
+    }
+
+    &-big {
+      h2 {
+        font-size: 2rem;
+      }
+    }
+
+    &-med {
+      p,
+      span {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .weather {
+    &__img {
+      width: 400px;
+    }
+
+    &__info,
+    &__time {
+      width: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .weather {
+    &__img {
+      width: 350px;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .h-fs {
+    &-bigger {
+      h2,
+      p {
+        font-size: 3rem;
+      }
+    }
+
+    &-big {
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    &-med {
+      p,
+      span {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .weather {
+    &__img {
+      width: 200px;
+    }
+  }
+}
+
+@media screen and (max-width: 625px) {
+  .weather {
+    &__img {
+      width: 150px;
+    }
+  }
+
+  .cta {
+    button {
+      padding: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 535px) {
+  .weather {
+    &__days {
+      flex-wrap: wrap;
+
+      .day {
+        width: 120px;
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .cta {
+    button {
+      margin: 0.5rem;
+      width: 250px;
+    }
+  }
+}
+
+@media screen and (max-width: 455px) {
+  .weather {
+    &__info {
+      text-align: center;
+    }
+
+    &__days {
+      flex-wrap: wrap;
+
+      .day {
+        width: 90px;
+      }
     }
   }
 }
