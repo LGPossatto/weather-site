@@ -3,6 +3,7 @@
 
   --black: rgb(22, 22, 22);
   --white: rgb(245, 245, 245);
+  --white-rgb: 245, 245, 245;
 
   --main-color: rgb(128, 218, 235);
 }
@@ -10,6 +11,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 
   font-family: "Roboto", sans-serif;
   color: var(--black);
@@ -18,7 +20,7 @@
 html,
 body {
   width: 100%;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -32,12 +34,53 @@ body {
   color: var(--black);
 }
 
-// content
-.container {
+// helper
+.h-container {
   max-width: 1920px;
   width: 100%;
 }
 
+.h-color {
+  &-w {
+    h1,
+    h2,
+    p,
+    span {
+      color: var(--white);
+    }
+  }
+
+  &-mc {
+    h2,
+    p {
+      color: var(--main-color);
+    }
+  }
+}
+
+.h-fs {
+  &-bigger {
+    h2,
+    p {
+      font-size: 7rem;
+    }
+  }
+
+  &-big {
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  &-med {
+    p,
+    span {
+      font-size: 2rem;
+    }
+  }
+}
+
+// content
 nav {
   background-color: var(--main-color);
   width: 100%;
@@ -45,20 +88,23 @@ nav {
   h1 {
     text-align: center;
     font-size: 3rem;
-    color: var(--white);
   }
 }
 
 // weather section
 .weather {
-  width: 100%;
+  background-color: var(--main-color);
+  margin: 2rem 2rem 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 
   &__img,
-  &__info {
+  &__info,
+  &__time {
     max-width: 512px;
     min-width: 320px;
   }
@@ -66,31 +112,89 @@ nav {
   &__img {
     position: relative;
     background-image: url(/images/cloudy.png);
+    background-repeat: no-repeat;
+    background-size: contain;
 
     p {
       position: absolute;
       bottom: 0;
       right: 0;
 
-      font-size: 7rem;
+      background-color: var(--white);
+      padding: 0 0.5rem;
+      border-radius: 1rem;
     }
   }
 
   &__info {
-    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 
     p {
-      background-color: var(--main-color);
-      padding: 0.25em;
-      border-radius: 1em;
+      font-weight: 700;
+    }
+  }
 
-      &:not(:last-child) {
-        margin-bottom: 0.25em;
+  &__time {
+    text-align: right;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__days {
+    width: 100%;
+    padding: 1rem 0;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    .day {
+      max-width: 150px;
+      min-width: 75px;
+      padding: 0.5rem;
+      border: 2px solid var(--white);
+      border-radius: 1rem;
+
+      transition: background-color 0.25s ease-in-out;
+
+      text-align: center;
+
+      img {
+        width: 100%;
       }
 
-      font-size: 2rem;
-      color: var(--white);
-      font-weight: 700;
+      p {
+        text-align: center;
+      }
+
+      &:hover {
+        background-color: rgba(var(--white-rgb), 0.25);
+      }
+    }
+  }
+}
+
+// Buttons
+.cta {
+  margin: 1rem 2rem 2rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  button {
+    background-color: var(--black);
+    padding: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+
+    transition: opacity 0.25s ease-in-out;
+
+    &:hover {
+      opacity: 0.85;
     }
   }
 }

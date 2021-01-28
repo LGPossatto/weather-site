@@ -8,21 +8,67 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles/css/style.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
     <title>Receitas do Dia</title>
   </head>
   <body>
-    <nav><h1>Receitas do Dia</h1></nav>
-    <div class="container">
+    <nav class="h-color-w"><h1>Receitas do Dia</h1></nav>
+    <div class="h-container">
       <section class="weather">
-        <div class="weather__img">
-          <img src="/images/cloudy.png" alt="imagem sol encoberto" />
+        <div class="weather__img h-color-mc h-fs-bigger">
+          <img src="/images/cloudy.png" alt="algumas nuvens" />
           <p>27º</p>
         </div>
-        <div class="weather__info">
+        <div class="weather__info h-color-w h-fs-med">
+          <p style="text-transform: capitalize">Algumas Nuvens</p>
           <p>Sensação Termica: 29ºC</p>
+          <p>Máxima: 31º</p>
+          <p>Mínima: 24º</p>
+          <p>Humidade: 75%</p>
+          <p>Nebulosidade: 20%</p>
+          <p>Velocidade do Vento: 20m/s</p>
+        </div>
+        <div class="weather__time h-color-w h-fs-med h-fs-bigger">
+          <h2 id="weather-time">12:32<span>27, Quarta-Feira</span></h2>
+        </div>
+        <div class="weather__days h-color-w h-fs-med">
+          <div class="day">
+            <img src="/images/cloudy.png" alt="algumas nuvens" />
+            <p>qua</p>
+            <p>29º - 32º</p>
+          </div>
+          <div class="day">
+            <img src="/images/cloudy.png" alt="algumas nuvens" />
+            <p>qua</p>
+            <p>29º - 32º</p>
+          </div>
+          <div class="day">
+            <img src="/images/cloudy.png" alt="algumas nuvens" />
+            <p>qua</p>
+            <p>29º - 32º</p>
+          </div>
+          <div class="day">
+            <img src="/images/cloudy.png" alt="algumas nuvens" />
+            <p>qua</p>
+            <p>29º - 32º</p>
+          </div>
+          <div class="day">
+            <img src="/images/cloudy.png" alt="algumas nuvens" />
+            <p>qua</p>
+            <p>29º - 32º</p>
+          </div>
+          <div class="day">
+            <img src="/images/cloudy.png" alt="algumas nuvens" />
+            <p>qua</p>
+            <p>29º - 32º</p>
+          </div>
         </div>
       </section>
+
+      <div class="cta h-color-mc h-fs-big">
+        <button><h2>Dia perfeito para...</h2></button>
+        <button><h2>e para amanha...</h2></button>
+      </div>
     </div>
   </body>
 
