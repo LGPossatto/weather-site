@@ -391,6 +391,30 @@ const removeAll = () => {
   removeError();
 };
 
+const selectImg = (id) => {
+  if (id >= 200 && id <= 232) {
+    return "/images/tempestate.png";
+  } else if ((id >= 300 && id <= 321) || (id >= 520 && id <= 531)) {
+    return "/images/garoa.png";
+  } else if (id >= 500 && id <= 504) {
+    return "/images/chuva.png";
+  } else if (id === 511) {
+    return "/images/chuva-congelante.png";
+  } else if (id >= 600 && id <= 622) {
+    return "/images/neve.png";
+  } else if (id >= 701 && id <= 781) {
+    return "/images/atmosfera.png";
+  } else if (id === 800) {
+    return "/images/ceu-limpo.png";
+  } else if (id === 801 || id === 802) {
+    return "/images/algumas-nuvens.png";
+  } else if (id === 803 || id === 804) {
+    return "/images/muitas-nuvens.png";
+  } else {
+    return "/images/clima.png";
+  }
+};
+
 const selectDay = (day) => {
   document.getElementById("btn-day").innerHTML = `<h2>e para ${day}...</h2>`;
 };
@@ -411,7 +435,8 @@ const handleObj = (obj) => {
   const kelvinToC = (value) => value - 273.15;
 
   const weatherImg = document.getElementById("weather-img");
-  weatherImg.firstElementChild.src = "/images/cloudy.png";
+  weatherImg.firstElementChild.src = selectImg(weather[0].id);
+  weatherImg.firstElementChild.src = weather[0].description;
   weatherImg.lastElementChild.textContent = `${kelvinToC(temp).toFixed(1)}º`;
 
   const weatherInfo = document.getElementById("weather-info").children;
@@ -431,21 +456,23 @@ const handleObj = (obj) => {
   const nextDays = getNextDays(6);
   for (let i = 0; i < weatherDays.length; i++) {
     const {
-      temp: { min, max },
+      temp: { min: dailyMin, max: dailyMax },
+      weather: dailyWeather,
     } = obj.daily[i + 1];
     weatherDays[i].addEventListener("click", () => selectDay(nextDays[i]));
-    weatherDays[i].children[0].src = "images/cloudy.png";
+    weatherDays[i].children[0].src = selectImg(dailyWeather[0].id);
+    weatherDays[i].children[0].alt = dailyWeather[0].description;
     weatherDays[i].children[1].textContent = `${nextDays[i].slice(0, 3)}`;
     weatherDays[i].children[2].textContent = `${parseInt(
-      kelvinToC(min)
-    )}º / ${parseInt(kelvinToC(max))}º`;
+      kelvinToC(dailyMin)
+    )}º / ${parseInt(kelvinToC(dailyMax))}º`;
   }
 };
 
 const getWeather = async () => {
   try {
     const resp = await fetch(
-      "https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,minutely&appid=b60cdd3bc4b5e2602c1e98fa10709a32"
+      "https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&lang=pt_br&exclude=hourly,minutely&appid=b60cdd3bc4b5e2602c1e98fa10709a32"
     );
     const ret = await resp.json();
 
