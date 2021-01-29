@@ -63,6 +63,7 @@ body {
   font-size: 7rem;
 }
 
+.h-fs-big h1,
 .h-fs-big h2 {
   font-size: 2.5rem;
 }
@@ -79,7 +80,6 @@ nav {
 
 nav h1 {
   text-align: center;
-  font-size: 3rem;
 }
 
 .welcome,
@@ -188,6 +188,7 @@ nav h1 {
 }
 
 .weather__days .day {
+  cursor: pointer;
   max-width: 150px;
   min-width: 75px;
   padding: 0.5rem;
@@ -203,6 +204,7 @@ nav h1 {
 }
 
 .weather__days .day p {
+  text-transform: capitalize;
   text-align: center;
 }
 
@@ -241,6 +243,7 @@ button:hover {
   .h-fs-bigger p {
     font-size: 5rem;
   }
+  .h-fs-big h1,
   .h-fs-big h2 {
     font-size: 2rem;
   }
@@ -267,6 +270,7 @@ button:hover {
   .h-fs-bigger p {
     font-size: 3rem;
   }
+  .h-fs-big h1,
   .h-fs-big h2 {
     font-size: 1.5rem;
   }
@@ -301,10 +305,14 @@ button:hover {
     margin: 0.5rem;
     width: 250px;
   }
+  .cta button h2 {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (max-width: 455px) {
   .weather__info {
+    margin: 1rem 0;
     text-align: center;
   }
   .weather__days {

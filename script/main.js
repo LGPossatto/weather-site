@@ -314,7 +314,7 @@ let test = {
 
 let hasFetch = true;
 // clock
-const getTime = () => {
+const getTime = (onlyWD = false) => {
   const weekDays = [
     "Domingo",
     "Segunda-Feira",
@@ -330,7 +330,26 @@ const getTime = () => {
   const newDay = newTime.getDate();
   const newWeekDay = weekDays[newTime.getDay()];
 
+  if (onlyWD) {
+    return [newWeekDay, weekDays];
+  }
   return [newHour, newMinute, newDay, newWeekDay];
+};
+
+const getNextDays = (nDays) => {
+  let daysList = getTime(true);
+  let retDays = [];
+
+  let index = daysList[1].indexOf(daysList[0]) + 1;
+  for (let i = 0; i <= nDays; i++) {
+    if (index > 6) {
+      index = 0;
+    }
+    retDays.push(daysList[1][index]);
+    index++;
+  }
+
+  return retDays;
 };
 
 const weatherTime = document.getElementById("weather-time");
@@ -342,6 +361,7 @@ const handleClock = () => {
   }<span>${newTime[2]}, ${newTime[3]}</span>`;
 };
 
+// error
 const removeError = () => {
   document.getElementById("error").style.display = "none";
 };
@@ -369,6 +389,10 @@ const removeAll = () => {
   removeWelcome();
   removeLoading();
   removeError();
+};
+
+const selectDay = (day) => {
+  document.getElementById("btn-day").innerHTML = `<h2>e para ${day}...</h2>`;
 };
 
 const handleObj = (obj) => {
@@ -402,6 +426,20 @@ const handleObj = (obj) => {
   weatherInfo[6].textContent = `Velocidade do Vento: ${wind_speed.toFixed(
     2
   )}m/s`;
+
+  const weatherDays = document.getElementById("weather-days").children;
+  const nextDays = getNextDays(6);
+  for (let i = 0; i < weatherDays.length; i++) {
+    const {
+      temp: { min, max },
+    } = obj.daily[i + 1];
+    weatherDays[i].addEventListener("click", () => selectDay(nextDays[i]));
+    weatherDays[i].children[0].src = "images/cloudy.png";
+    weatherDays[i].children[1].textContent = `${nextDays[i].slice(0, 3)}`;
+    weatherDays[i].children[2].textContent = `${parseInt(
+      kelvinToC(min)
+    )}º / ${parseInt(kelvinToC(max))}º`;
+  }
 };
 
 const getWeather = async () => {

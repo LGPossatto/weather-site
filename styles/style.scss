@@ -72,6 +72,7 @@ body {
   }
 
   &-big {
+    h1,
     h2 {
       font-size: 2.5rem;
     }
@@ -92,7 +93,6 @@ nav {
 
   h1 {
     text-align: center;
-    font-size: 3rem;
   }
 }
 
@@ -191,6 +191,7 @@ nav {
     justify-content: space-evenly;
 
     .day {
+      cursor: pointer;
       max-width: 150px;
       min-width: 75px;
       padding: 0.5rem;
@@ -206,6 +207,7 @@ nav {
       }
 
       p {
+        text-transform: capitalize;
         text-align: center;
       }
 
@@ -239,6 +241,7 @@ button {
   }
 }
 
+// media
 @media screen and (max-width: 1650px) {
   .h-fs {
     &-bigger {
@@ -249,6 +252,7 @@ button {
     }
 
     &-big {
+      h1,
       h2 {
         font-size: 2rem;
       }
@@ -292,6 +296,7 @@ button {
     }
 
     &-big {
+      h1,
       h2 {
         font-size: 1.5rem;
       }
@@ -342,6 +347,10 @@ button {
     button {
       margin: 0.5rem;
       width: 250px;
+
+      h2 {
+        font-size: 1rem;
+      }
     }
   }
 }
@@ -349,6 +358,7 @@ button {
 @media screen and (max-width: 455px) {
   .weather {
     &__info {
+      margin: 1rem 0;
       text-align: center;
     }
 
