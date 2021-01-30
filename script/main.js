@@ -361,22 +361,11 @@ const handleClock = () => {
   }<span>${newTime[2]}, ${newTime[3]}</span>`;
 };
 
-// error
+// remove
 const removeError = () => {
   document.getElementById("error").style.display = "none";
 };
 
-const seeDemo = () => {
-  removeError();
-  removeLoading();
-};
-
-const showError = () => {
-  document.getElementById("error").style.display = "block";
-  removeWelcome();
-};
-
-// at loading
 const removeWelcome = () => {
   document.getElementById("welcome-div").style.display = "none";
 };
@@ -391,6 +380,18 @@ const removeAll = () => {
   removeError();
 };
 
+// error
+const seeDemo = () => {
+  removeError();
+  removeLoading();
+};
+
+const showError = () => {
+  document.getElementById("error").style.display = "block";
+  removeWelcome();
+};
+
+// handle weather
 const selectImg = (id) => {
   if (id >= 200 && id <= 232) {
     return "/images/tempestate.png";
@@ -483,6 +484,16 @@ const getWeather = async () => {
   }
 };
 
+//map
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+}
+
+// init
 const welcome = () => {
   const welcomeDiv = document.getElementById("welcome-div");
 

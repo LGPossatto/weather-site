@@ -213,7 +213,7 @@ nav h1 {
 }
 
 .cta {
-  margin: 1rem 2rem 2rem;
+  margin: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -236,6 +236,24 @@ button {
 
 button:hover {
   opacity: 0.85;
+}
+
+.map {
+  width: calc(100% - 4rem);
+  height: 450px;
+  margin: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.map #map {
+  background-color: var(--main-color);
+  width: 90%;
+  height: 100%;
 }
 
 @media screen and (max-width: 1650px) {
