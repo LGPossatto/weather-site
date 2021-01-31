@@ -312,7 +312,7 @@ let test = {
   ],
 };
 
-let hasFetch = true;
+let hasFetch = false;
 // clock
 const getTime = (onlyWD = false) => {
   const weekDays = [
@@ -416,10 +416,6 @@ const selectImg = (id) => {
   }
 };
 
-const selectDay = (day) => {
-  document.getElementById("btn-day").innerHTML = `<h2>e para ${day}...</h2>`;
-};
-
 const handleObj = (obj) => {
   const {
     temp,
@@ -437,7 +433,7 @@ const handleObj = (obj) => {
 
   const weatherImg = document.getElementById("weather-img");
   weatherImg.firstElementChild.src = selectImg(weather[0].id);
-  weatherImg.firstElementChild.src = weather[0].description;
+  weatherImg.firstElementChild.alt = weather[0].description;
   weatherImg.lastElementChild.textContent = `${kelvinToC(temp).toFixed(1)}º`;
 
   const weatherInfo = document.getElementById("weather-info").children;
@@ -460,7 +456,6 @@ const handleObj = (obj) => {
       temp: { min: dailyMin, max: dailyMax },
       weather: dailyWeather,
     } = obj.daily[i + 1];
-    weatherDays[i].addEventListener("click", () => selectDay(nextDays[i]));
     weatherDays[i].children[0].src = selectImg(dailyWeather[0].id);
     weatherDays[i].children[0].alt = dailyWeather[0].description;
     weatherDays[i].children[1].textContent = `${nextDays[i].slice(0, 3)}`;
@@ -478,6 +473,7 @@ const getWeather = async () => {
     const ret = await resp.json();
 
     handleObj(ret);
+    hasFetch = true;
     removeAll();
   } catch (error) {
     hasFetch = false;
@@ -485,11 +481,32 @@ const getWeather = async () => {
 };
 
 //map
-var map;
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
+  let directionsRenderer = new google.maps.DirectionsRenderer();
+  let center = new google.maps.LatLng(41.850033, -87.6500523);
+  let mapOptions = {
     zoom: 8,
+    center: center,
+  };
+  let map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  directionsRenderer.setMap(map);
+}
+
+function calcRoute() {
+  let directionsService = new google.maps.DirectionsService();
+  let directionsRenderer = new google.maps.DirectionsRenderer();
+  let selectedMode = document.getElementById("select-mode").value;
+  let start = document.getElementById("from").value;
+  let end = document.getElementById("to").value;
+  let request = {
+    origin: start,
+    destination: end,
+    travelMode: google.maps.TravelMode[selectedMode],
+  };
+  directionsService.route(request, function (response, status) {
+    if (status == "OK") {
+      directionsRenderer.setDirections(response);
+    }
   });
 }
 
@@ -497,10 +514,10 @@ function initMap() {
 const welcome = () => {
   const welcomeDiv = document.getElementById("welcome-div");
 
-  //getWeather();
-  hasFetch = true;
+  getWeather();
+  /*   hasFetch = true;
   handleObj(test);
-  removeAll();
+  removeAll(); */
 
   setTimeout(() => {
     welcomeDiv.lastElementChild.style.visibility = "visible";
@@ -519,5 +536,6 @@ const welcome = () => {
   handleClock();
   setInterval(handleClock, 5000);
   document.getElementById("btn-see-demo").addEventListener("click", seeDemo);
+  document.getElementById("btn-calc").addEventListener("click", calcRoute);
   welcome();
 })();

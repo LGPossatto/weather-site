@@ -48,6 +48,7 @@ body {
   &-w {
     h1,
     h2,
+    h3,
     p,
     span {
       color: var(--white);
@@ -79,6 +80,7 @@ body {
   }
 
   &-med {
+    h3,
     p,
     span {
       font-size: 2rem;
@@ -189,7 +191,6 @@ nav {
     justify-content: space-evenly;
 
     .day {
-      cursor: pointer;
       max-width: 150px;
       min-width: 75px;
       padding: 0.5rem;
@@ -207,10 +208,6 @@ nav {
       p {
         text-transform: capitalize;
         text-align: center;
-      }
-
-      &:hover {
-        background-color: rgba(var(--white-rgb), 0.25);
       }
     }
   }
@@ -242,16 +239,61 @@ button {
 // map
 .map {
   width: calc(100% - 4rem);
-  height: 450px;
   margin: 2rem;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &__data {
+    background-color: var(--main-color);
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem 1rem 0 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .from,
+    .to {
+      display: flex;
+      align-items: center;
+
+      h3 {
+        padding-right: 0.5rem;
+      }
+
+      input {
+        background-color: var(--main-color);
+        width: 300px;
+        height: 40px;
+        padding: 0.2rem;
+        border: 2px solid var(--white);
+        border-radius: 1rem;
+
+        &::placeholder,
+        &[type="text"] {
+          color: var(--white);
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    select {
+      font-size: 1.25rem;
+    }
+  }
 
   #map {
     background-color: var(--main-color);
-    width: 90%;
-    height: 100%;
+    width: 100%;
+    height: 400px;
+  }
+
+  button {
+    margin-top: 1rem;
   }
 }
 
@@ -273,6 +315,7 @@ button {
     }
 
     &-med {
+      h3,
       p,
       span {
         font-size: 1.5rem;
@@ -298,6 +341,22 @@ button {
       width: 350px;
     }
   }
+
+  .map {
+    &__data {
+      .from,
+      .to {
+        input {
+          width: 200px;
+
+          &::placeholder,
+          &[type="text"] {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 960px) {
@@ -317,6 +376,7 @@ button {
     }
 
     &-med {
+      h3,
       p,
       span {
         font-size: 1rem;
@@ -327,6 +387,26 @@ button {
   .weather {
     &__img {
       width: 200px;
+    }
+  }
+
+  .map {
+    &__data {
+      .from,
+      .to {
+        input {
+          width: 150px;
+
+          &::placeholder,
+          &[type="text"] {
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      select {
+        font-size: 0.75rem;
+      }
     }
   }
 }
@@ -341,6 +421,14 @@ button {
   .cta {
     button {
       padding: 1rem;
+    }
+  }
+
+  .map {
+    &__data {
+      select {
+        margin-top: 1rem;
+      }
     }
   }
 }
@@ -364,6 +452,23 @@ button {
 
       h2 {
         font-size: 1rem;
+      }
+    }
+  }
+
+  .map {
+    &__data {
+      justify-content: end;
+
+      .from,
+      .to {
+        input {
+          width: 60vw;
+        }
+      }
+
+      .from {
+        margin-bottom: 1rem;
       }
     }
   }

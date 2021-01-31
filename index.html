@@ -9,10 +9,10 @@
     />
     <link rel="stylesheet" href="/styles/css/style.css" />
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-    <title>Receitas do Dia</title>
+    <title>Voudea</title>
   </head>
   <body>
-    <nav class="h-color-w h-fs-big"><h1>Receitas do Dia</h1></nav>
+    <nav class="h-color-w h-fs-big"><h1>Voudea</h1></nav>
 
     <div class="welcome h-color-mc h-fs-med h-fs-big" id="welcome-div">
       <h1>Bem-Vindo(a)</h1>
@@ -79,12 +79,37 @@
         </div>
       </section>
 
-      <div class="cta h-color-mc h-fs-big">
-        <button><h2>Dia perfeito para...</h2></button>
-        <button id="btn-day"><h2>e para amanha...</h2></button>
-      </div>
+      <section class="map h-color-w h-fs-med">
+        <div class="map__data">
+          <div class="from">
+            <h3>De:</h3>
+            <input
+              id="from"
+              type="text"
+              placeholder="ex: rua, cidade, long-lat"
+            />
+          </div>
+          <div class="to">
+            <h3>Para:</h3>
+            <input
+              id="to"
+              type="text"
+              placeholder="ex: rua, cidade, long-lat"
+            />
+          </div>
+          <select id="select-mode">
+            <option value="0">Carro</option>
+            <option value="1">Bicicleta</option>
+            <option value="2">Trans. Público</option>
+            <option value="3">Andando</option>
+          </select>
+        </div>
+        <div id="map"></div>
 
-      <section class="map"><div id="map"></div></section>
+        <button class="button h-color-mc h-fs-med" id="btn-calc">
+          <h2>Calcular Rota</h2>
+        </button>
+      </section>
     </div>
 
     <script src="/script/main.js"></script>
