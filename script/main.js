@@ -151,10 +151,6 @@ const handleObj = (obj) => {
   }
 };
 
-//"https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&lang=pt_br&exclude=hourly,minutely&appid=b60cdd3bc4b5e2602c1e98fa10709a32"
-
-//"https://api.openweathermap.org/data/2.5/onecall?lat=-27.433330&lon=-48.408810&lang=pt_br&exclude=hourly,minutely&appid=b60cdd3bc4b5e2602c1e98fa10709a32"
-
 const handleWeather = async (posLatLon) => {
   try {
     const resp = await fetch(
