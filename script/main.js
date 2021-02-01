@@ -312,7 +312,6 @@ let test = {
   ],
 };
 
-let hasFetch = false;
 // clock
 const getTime = (onlyWD = false) => {
   const weekDays = [
@@ -381,6 +380,7 @@ const removeAll = () => {
 };
 
 // error
+let hasFetch = false;
 const seeDemo = () => {
   removeError();
   removeLoading();
@@ -465,10 +465,14 @@ const handleObj = (obj) => {
   }
 };
 
-const getWeather = async () => {
+//"https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&lang=pt_br&exclude=hourly,minutely&appid=b60cdd3bc4b5e2602c1e98fa10709a32"
+
+//"https://api.openweathermap.org/data/2.5/onecall?lat=-27.433330&lon=-48.408810&lang=pt_br&exclude=hourly,minutely&appid=b60cdd3bc4b5e2602c1e98fa10709a32"
+
+const handleWeather = async (posLatLon) => {
   try {
     const resp = await fetch(
-      "https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&lang=pt_br&exclude=hourly,minutely&appid=b60cdd3bc4b5e2602c1e98fa10709a32"
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${posLatLon[0]}&lon=${posLatLon[1]}&lang=pt_br&exclude=hourly,minutely&appid=b60cdd3bc4b5e2602c1e98fa10709a32`
     );
     const ret = await resp.json();
 
@@ -481,43 +485,40 @@ const getWeather = async () => {
 };
 
 //map
-function initMap() {
-  let directionsRenderer = new google.maps.DirectionsRenderer();
-  let center = new google.maps.LatLng(41.850033, -87.6500523);
-  let mapOptions = {
-    zoom: 8,
-    center: center,
-  };
-  let map = new google.maps.Map(document.getElementById("map"), mapOptions);
-  directionsRenderer.setMap(map);
-}
-
-function calcRoute() {
-  let directionsService = new google.maps.DirectionsService();
-  let directionsRenderer = new google.maps.DirectionsRenderer();
-  let selectedMode = document.getElementById("select-mode").value;
-  let start = document.getElementById("from").value;
-  let end = document.getElementById("to").value;
-  let request = {
-    origin: start,
-    destination: end,
-    travelMode: google.maps.TravelMode[selectedMode],
-  };
-  directionsService.route(request, function (response, status) {
-    if (status == "OK") {
-      directionsRenderer.setDirections(response);
-    }
+function initMap(posLatLon) {
+  let map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: posLatLon[0], lng: posLatLon[1] },
+    zoom: 15,
   });
 }
 
 // init
-const welcome = () => {
+const welcome = async () => {
   const welcomeDiv = document.getElementById("welcome-div");
 
-  getWeather();
-  /*   hasFetch = true;
-  handleObj(test);
-  removeAll(); */
+  // get position
+  let posLatLon = [];
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      posLatLon = [pos.coords.latitude, pos.coords.longitude];
+
+      // call weather
+      handleWeather(posLatLon);
+      initMap(posLatLon);
+    },
+    (err) => {
+      alert(
+        "ERROR(" +
+          err.code +
+          "): " +
+          err.message +
+          ". Será usado a localização padrão!"
+      );
+      posLatLon = [-27.5969, -48.5495];
+      handleWeather(posLatLon);
+      initMap(posLatLon);
+    }
+  );
 
   setTimeout(() => {
     welcomeDiv.lastElementChild.style.visibility = "visible";
@@ -536,6 +537,5 @@ const welcome = () => {
   handleClock();
   setInterval(handleClock, 5000);
   document.getElementById("btn-see-demo").addEventListener("click", seeDemo);
-  document.getElementById("btn-calc").addEventListener("click", calcRoute);
   welcome();
 })();

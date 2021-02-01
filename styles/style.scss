@@ -238,62 +238,16 @@ button {
 
 // map
 .map {
+  background-color: var(--main-color);
+  overflow: hidden;
   width: calc(100% - 4rem);
+  height: 450px;
   margin: 2rem;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  &__data {
-    background-color: var(--main-color);
-    width: 100%;
-    padding: 1rem;
-    border-radius: 1rem 1rem 0 0;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-
-    .from,
-    .to {
-      display: flex;
-      align-items: center;
-
-      h3 {
-        padding-right: 0.5rem;
-      }
-
-      input {
-        background-color: var(--main-color);
-        width: 300px;
-        height: 40px;
-        padding: 0.2rem;
-        border: 2px solid var(--white);
-        border-radius: 1rem;
-
-        &::placeholder,
-        &[type="text"] {
-          color: var(--white);
-          font-size: 1.5rem;
-        }
-      }
-    }
-
-    select {
-      font-size: 1.25rem;
-    }
-  }
+  border-radius: 1rem;
 
   #map {
-    background-color: var(--main-color);
     width: 100%;
-    height: 400px;
-  }
-
-  button {
-    margin-top: 1rem;
+    height: 100%;
   }
 }
 
@@ -341,22 +295,6 @@ button {
       width: 350px;
     }
   }
-
-  .map {
-    &__data {
-      .from,
-      .to {
-        input {
-          width: 200px;
-
-          &::placeholder,
-          &[type="text"] {
-            font-size: 1rem;
-          }
-        }
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 960px) {
@@ -389,26 +327,6 @@ button {
       width: 200px;
     }
   }
-
-  .map {
-    &__data {
-      .from,
-      .to {
-        input {
-          width: 150px;
-
-          &::placeholder,
-          &[type="text"] {
-            font-size: 0.9rem;
-          }
-        }
-      }
-
-      select {
-        font-size: 0.75rem;
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 625px) {
@@ -421,14 +339,6 @@ button {
   .cta {
     button {
       padding: 1rem;
-    }
-  }
-
-  .map {
-    &__data {
-      select {
-        margin-top: 1rem;
-      }
     }
   }
 }
@@ -452,23 +362,6 @@ button {
 
       h2 {
         font-size: 1rem;
-      }
-    }
-  }
-
-  .map {
-    &__data {
-      justify-content: end;
-
-      .from,
-      .to {
-        input {
-          width: 60vw;
-        }
-      }
-
-      .from {
-        margin-bottom: 1rem;
       }
     }
   }

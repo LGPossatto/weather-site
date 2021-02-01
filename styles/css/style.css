@@ -236,103 +236,17 @@ button:hover {
 }
 
 .map {
+  background-color: var(--main-color);
+  overflow: hidden;
   width: calc(100% - 4rem);
+  height: 450px;
   margin: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.map__data {
-  background-color: var(--main-color);
-  width: 100%;
-  padding: 1rem;
-  border-radius: 1rem 1rem 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.map__data .from,
-.map__data .to {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.map__data .from h3,
-.map__data .to h3 {
-  padding-right: 0.5rem;
-}
-
-.map__data .from input,
-.map__data .to input {
-  background-color: var(--main-color);
-  width: 300px;
-  height: 40px;
-  padding: 0.2rem;
-  border: 2px solid var(--white);
   border-radius: 1rem;
 }
 
-.map__data .from input::-webkit-input-placeholder, .map__data .from input[type="text"],
-.map__data .to input::-webkit-input-placeholder,
-.map__data .to input[type="text"] {
-  color: var(--white);
-  font-size: 1.5rem;
-}
-
-.map__data .from input:-ms-input-placeholder, .map__data .from input[type="text"],
-.map__data .to input:-ms-input-placeholder,
-.map__data .to input[type="text"] {
-  color: var(--white);
-  font-size: 1.5rem;
-}
-
-.map__data .from input::-ms-input-placeholder, .map__data .from input[type="text"],
-.map__data .to input::-ms-input-placeholder,
-.map__data .to input[type="text"] {
-  color: var(--white);
-  font-size: 1.5rem;
-}
-
-.map__data .from input::placeholder, .map__data .from input[type="text"],
-.map__data .to input::placeholder,
-.map__data .to input[type="text"] {
-  color: var(--white);
-  font-size: 1.5rem;
-}
-
-.map__data select {
-  font-size: 1.25rem;
-}
-
 .map #map {
-  background-color: var(--main-color);
   width: 100%;
-  height: 400px;
-}
-
-.map button {
-  margin-top: 1rem;
+  height: 100%;
 }
 
 @media screen and (max-width: 1650px) {
@@ -361,30 +275,6 @@ button:hover {
   .weather__img {
     width: 350px;
   }
-  .map__data .from input,
-  .map__data .to input {
-    width: 200px;
-  }
-  .map__data .from input::-webkit-input-placeholder, .map__data .from input[type="text"],
-  .map__data .to input::-webkit-input-placeholder,
-  .map__data .to input[type="text"] {
-    font-size: 1rem;
-  }
-  .map__data .from input:-ms-input-placeholder, .map__data .from input[type="text"],
-  .map__data .to input:-ms-input-placeholder,
-  .map__data .to input[type="text"] {
-    font-size: 1rem;
-  }
-  .map__data .from input::-ms-input-placeholder, .map__data .from input[type="text"],
-  .map__data .to input::-ms-input-placeholder,
-  .map__data .to input[type="text"] {
-    font-size: 1rem;
-  }
-  .map__data .from input::placeholder, .map__data .from input[type="text"],
-  .map__data .to input::placeholder,
-  .map__data .to input[type="text"] {
-    font-size: 1rem;
-  }
 }
 
 @media screen and (max-width: 960px) {
@@ -404,33 +294,6 @@ button:hover {
   .weather__img {
     width: 200px;
   }
-  .map__data .from input,
-  .map__data .to input {
-    width: 150px;
-  }
-  .map__data .from input::-webkit-input-placeholder, .map__data .from input[type="text"],
-  .map__data .to input::-webkit-input-placeholder,
-  .map__data .to input[type="text"] {
-    font-size: 0.9rem;
-  }
-  .map__data .from input:-ms-input-placeholder, .map__data .from input[type="text"],
-  .map__data .to input:-ms-input-placeholder,
-  .map__data .to input[type="text"] {
-    font-size: 0.9rem;
-  }
-  .map__data .from input::-ms-input-placeholder, .map__data .from input[type="text"],
-  .map__data .to input::-ms-input-placeholder,
-  .map__data .to input[type="text"] {
-    font-size: 0.9rem;
-  }
-  .map__data .from input::placeholder, .map__data .from input[type="text"],
-  .map__data .to input::placeholder,
-  .map__data .to input[type="text"] {
-    font-size: 0.9rem;
-  }
-  .map__data select {
-    font-size: 0.75rem;
-  }
 }
 
 @media screen and (max-width: 625px) {
@@ -439,9 +302,6 @@ button:hover {
   }
   .cta button {
     padding: 1rem;
-  }
-  .map__data select {
-    margin-top: 1rem;
   }
 }
 
@@ -460,18 +320,6 @@ button:hover {
   }
   .cta button h2 {
     font-size: 1rem;
-  }
-  .map__data {
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: end;
-  }
-  .map__data .from input,
-  .map__data .to input {
-    width: 60vw;
-  }
-  .map__data .from {
-    margin-bottom: 1rem;
   }
 }
 
