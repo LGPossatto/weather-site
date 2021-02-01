@@ -507,13 +507,24 @@ const welcome = async () => {
       initMap(posLatLon);
     },
     (err) => {
-      alert(
-        "ERROR(" +
-          err.code +
-          "): " +
-          err.message +
-          ". Será usado a localização padrão!"
-      );
+      if (err.code === 2) {
+        alert(
+          "ERROR(" +
+            err.code +
+            "): " +
+            err.message +
+            ". Será usado a localização padrão!\nPossivel erro com firefox, veja como tratar em https://github.com/LGPossatto/weather-site-mini-project"
+        );
+      } else {
+        alert(
+          "ERROR(" +
+            err.code +
+            "): " +
+            err.message +
+            ". Será usado a localização padrão!"
+        );
+      }
+
       posLatLon = [-27.5969, -48.5495];
       handleWeather(posLatLon);
       initMap(posLatLon);
