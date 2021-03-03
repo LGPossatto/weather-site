@@ -1,3 +1,5 @@
+*api keys doesn't work anymore
+
 # weather-site-mini-project
 ### Link = https://weather-map-mini-project.netlify.app/
 
